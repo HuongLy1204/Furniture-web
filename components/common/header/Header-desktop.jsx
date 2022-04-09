@@ -13,27 +13,28 @@ function HeaderDesktop() {
   const router = useRouter();
 
   return (
-    <Box  border={0.05} pt={1} display={{ xs: "none", lg: "block" }}>
+    <Box   border={0.05} pt={0} display={{ xs: "none", lg: "block" }}>
       {/* <Image src={Logo} />  */}
 
       <Box size="lg">
-        <Stack justifyContent={"unset"} direction="row">
-          <Box pl={5} width="15%">
+        <Stack alignItems={"center"} direction="row">
+          <Box  width="15%">
             <Image
+            height={150}
               src={Logo}
               alt="logo"
               layout="responsive"
-              objectFit="cover"
+              objectFit="scale-down"
             />
           </Box>
-          <Box px={4} width="65%">
-            <Stack pt={5} justifyContent={"space-around"} direction="row">
+          <Box   width="65%">
+            <Stack pt={1.5}  justifyContent={"space-around"} direction="row">
               {ROUTE_LIST.map((route) => (
                 <Link key={route.path} href={route.path} passHref>
                   <MuiLink
                     sx={{
                       color: "black",
-                      fontSize: "18px",
+                      fontSize: "16px",
                       fontWeight: "bolder",
                     }}
                     className={clsx({ active: router.pathname === route.path })}
@@ -45,7 +46,7 @@ function HeaderDesktop() {
               ))}
                </Stack>
                </Box>
-              <Box pt={5} width="20%">
+              <Box pt={1} width="20%">
                 <Stack justifyContent={"center"} direction="row" spacing={2}>
                   <Chip color="success" size="medium" icon={<LocalPhoneIcon />} label="0333311574" />
                 </Stack>

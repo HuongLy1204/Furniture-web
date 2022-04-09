@@ -23,7 +23,8 @@ export default function HomePage() {
         <Grid
         
           container
-          spacing={{ xs: 2, md: 3 }}
+          alignItems="center"
+          spacing={{ xs: 2, md: 2.5 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
           {PRODUCT_LIST.map((item) => (

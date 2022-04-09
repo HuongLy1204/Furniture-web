@@ -23,13 +23,14 @@ function HeaderMobile() {
   };
 
   return (
-    <Box display={{ xs: "block", lg: "none" }}>
-      <Stack justifyContent={"space-evenly"} direction="row">
-        <Box  >
-        <Image
+    <Box minHeight={50} display={{ xs: "block", lg: "none" }}>
+      <Stack minHeight={50} justifyContent={"space-between"} direction="row">
+        <Box  sx={{width: 300}} >
+        <Image sx={{pt:20}}
               src={Logo}
               alt="logo"
-            height={70}
+            height={90}
+            
               objectFit="scale-down"
             />
         </Box>

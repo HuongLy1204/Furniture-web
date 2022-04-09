@@ -6,22 +6,27 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { IconButton } from "@mui/material";
+import { Checkbox, IconButton } from "@mui/material";
 import { useState } from "react";
+import Favorite from '@mui/icons-material/Favorite';
 
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export default function ProductItem(props) {
-  const [isLike, setLike] = useState(false)
+  
 
   return (
-    <Card sx={{ maxWidth: 300 }}>
+    <Card  sx={{minHeight:"290px", maxHeight: 200, maxWidth: 300, padding:0 }}>
       <CardMedia
+        sx={{ layout:"responsive", objectFit:"scale-down",minHeight: "190px", maxHeight: 180, maxWidth: 280}}
         component="img"
-        max-height="300"
+        
         image={props.dataItem.url}
         alt={props.dataItem.title}
       />
-      <CardContent>
+      <CardContent sx={{padding:"5px"}}>
         <Typography
+          fontSize={16}
           align="center"
           gutterBottom
           variant="OVERLINE TEXT"
@@ -30,19 +35,15 @@ export default function ProductItem(props) {
           {props.dataItem.title}
         </Typography>
       </CardContent>
-      <CardActions flexDirection="">
+      <CardActions  sx={{justifyContent:"space-around", mb:"4px"}}>
         <Button color="success" variant="outlined" size="medium">
           CHI TIẾT
         </Button>
-        <IconButton
-          onClick={() => setLike(!isLike)}
-          aria-label="favoritebordericon"
-        >
-          <FavoriteBorderIcon
-            variant="filled"
-            sx={{ color: isLike ? "red" : "black" }}
-          />
-        </IconButton>
+        
+        <Checkbox {...label} icon={<FavoriteBorderIcon />} checkedIcon={<Favorite color="sucess" />} />
+
+        
+      
       </CardActions>
     </Card>
   );
