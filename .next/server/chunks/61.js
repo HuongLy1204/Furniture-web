@@ -372,8 +372,8 @@ function _objectWithoutPropertiesLoose(source, excluded) {
     return target;
 }
 var ref;
-const experimentalLayoutRaw = (ref = {"deviceSizes":[640,750,828,1080,1200,1920,2048,3840],"imageSizes":[16,32,48,64,96,128,256,384],"path":"/_next/image","loader":"default","experimentalLayoutRaw":false}) === null || ref === void 0 ? void 0 : ref.experimentalLayoutRaw;
-const configEnv = {"deviceSizes":[640,750,828,1080,1200,1920,2048,3840],"imageSizes":[16,32,48,64,96,128,256,384],"path":"/_next/image","loader":"default","experimentalLayoutRaw":false};
+const experimentalLayoutRaw = (ref = {"deviceSizes":[640,750,828,1080,1200,1920,2048,3840],"imageSizes":[16,32,48,64,96,128,256,384],"path":"/_next/image/","loader":"default","experimentalLayoutRaw":false}) === null || ref === void 0 ? void 0 : ref.experimentalLayoutRaw;
+const configEnv = {"deviceSizes":[640,750,828,1080,1200,1920,2048,3840],"imageSizes":[16,32,48,64,96,128,256,384],"path":"/_next/image/","loader":"default","experimentalLayoutRaw":false};
 const loadedImageURLs = new Set();
 const allImgs = new Map();
 let perfObserver;
@@ -826,7 +826,15 @@ exports.normalizePathTrailingSlash = void 0;
 function removePathTrailingSlash(path) {
     return path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path;
 }
-const normalizePathTrailingSlash =  false ? 0 : removePathTrailingSlash;
+const normalizePathTrailingSlash =  true ? (path)=>{
+    if (/\.[^/]+\/?$/.test(path)) {
+        return removePathTrailingSlash(path);
+    } else if (path.endsWith("/")) {
+        return path;
+    } else {
+        return path + "/";
+    }
+} : 0;
 exports.normalizePathTrailingSlash = normalizePathTrailingSlash; //# sourceMappingURL=normalize-trailing-slash.js.map
 
 

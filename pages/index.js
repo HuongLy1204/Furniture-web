@@ -32,10 +32,6 @@ export default function HomePage() {
             </Grid>
           ))}
         </Grid>
-        {/* <Stack flexWrap={"wrap"} direction= "row" spacing={4} >
-          {PRODUCT_LIST.map(item => (<ProductItem dataItem = {item}></ProductItem>))}
-        
-        </Stack> */}
       </Container>
     </Box>
   );
