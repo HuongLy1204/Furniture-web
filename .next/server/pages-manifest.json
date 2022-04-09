@@ -1,8 +1,8 @@
 {
-  "/_document": "pages/_document.js",
-  "/gioi-thieu": "pages/gioi-thieu.html",
-  "/san-pham": "pages/san-pham.html",
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/": "pages/index.html"
+  "/_document": "pages/_document.js",
+  "/gioi-thieu": "pages/gioi-thieu.html",
+  "/": "pages/index.html",
+  "/san-pham": "pages/san-pham.html"
 }
