@@ -1,6 +1,9 @@
 {
-  "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
+  "/_app": "pages/_app.js",
+  "/api/hello": "pages/api/hello.js",
+  "/san-pham": "pages/san-pham.js",
+  "/": "pages/index.js",
   "/_error": "pages/_error.js",
-  "/": "pages/index.js"
+  "/gioi-thieu": "pages/gioi-thieu.js"
 }
