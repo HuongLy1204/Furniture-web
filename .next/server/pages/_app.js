@@ -5,7 +5,7 @@ exports.id = 888;
 exports.ids = [888];
 exports.modules = {
 
-/***/ 4315:
+/***/ 5065:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -16,11 +16,6 @@ __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ MyApp)
 });
 
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(997);
-;// CONCATENATED MODULE: external "prop-types"
-const external_prop_types_namespaceObject = require("prop-types");
-var external_prop_types_default = /*#__PURE__*/__webpack_require__.n(external_prop_types_namespaceObject);
 ;// CONCATENATED MODULE: external "next/head"
 const head_namespaceObject = require("next/head");
 var head_default = /*#__PURE__*/__webpack_require__.n(head_namespaceObject);
@@ -32,12 +27,19 @@ var CssBaseline_default = /*#__PURE__*/__webpack_require__.n(CssBaseline_namespa
 ;// CONCATENATED MODULE: external "@emotion/react"
 const react_namespaceObject = require("@emotion/react");
 // EXTERNAL MODULE: ./utils/theme.js
-var theme = __webpack_require__(804);
+var theme = __webpack_require__(7518);
 // EXTERNAL MODULE: ./utils/create-emotion-cache.js
-var create_emotion_cache = __webpack_require__(5719);
+var create_emotion_cache = __webpack_require__(9421);
 // EXTERNAL MODULE: ./components/layout/main.jsx + 6 modules
-var main = __webpack_require__(2305);
+var main = __webpack_require__(3013);
+// EXTERNAL MODULE: external "react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(997);
 ;// CONCATENATED MODULE: ./pages/_app.js
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -45,42 +47,33 @@ var main = __webpack_require__(2305);
 
 
 
+ // Client-side cache, shared for the whole session of the user in the browser.
 
 
-// Client-side cache, shared for the whole session of the user in the browser.
+
 const clientSideEmotionCache = (0,create_emotion_cache/* default */.Z)();
 function MyApp(props) {
-    const { Component , emotionCache =clientSideEmotionCache , pageProps  } = props;
-    const Layout = Component.Layout;
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_namespaceObject.CacheProvider, {
-        value: emotionCache,
-        children: [
-            /*#__PURE__*/ jsx_runtime_.jsx((head_default()), {
-                children: /*#__PURE__*/ jsx_runtime_.jsx("meta", {
-                    name: "viewport",
-                    content: "initial-scale=1, width=device-width"
-                })
-            }),
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)(styles_.ThemeProvider, {
-                theme: theme/* default */.Z,
-                children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx((CssBaseline_default()), {}),
-                    /*#__PURE__*/ jsx_runtime_.jsx(Layout, {
-                        children: /*#__PURE__*/ jsx_runtime_.jsx(Component, {
-                            ...pageProps
-                        })
-                    })
-                ]
-            })
-        ]
-    });
-};
-MyApp.propTypes = {
-    Component: (external_prop_types_default()).elementType.isRequired,
-    emotionCache: (external_prop_types_default()).object,
-    pageProps: (external_prop_types_default()).object.isRequired
-};
-
+  const {
+    Component,
+    emotionCache = clientSideEmotionCache,
+    pageProps
+  } = props;
+  const Layout = Component.Layout;
+  return /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_namespaceObject.CacheProvider, {
+    value: emotionCache,
+    children: [/*#__PURE__*/jsx_runtime_.jsx((head_default()), {
+      children: /*#__PURE__*/jsx_runtime_.jsx("meta", {
+        name: "viewport",
+        content: "initial-scale=1, width=device-width"
+      })
+    }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(styles_.ThemeProvider, {
+      theme: theme/* default */.Z,
+      children: [/*#__PURE__*/jsx_runtime_.jsx((CssBaseline_default()), {}), /*#__PURE__*/jsx_runtime_.jsx(Layout, {
+        children: /*#__PURE__*/jsx_runtime_.jsx(Component, _objectSpread({}, pageProps))
+      })]
+    })]
+  });
+}
 
 /***/ }),
 
@@ -315,7 +308,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [895,61,305,637], () => (__webpack_exec__(4315)));
+var __webpack_exports__ = __webpack_require__.X(0, [932,61,13,635], () => (__webpack_exec__(5065)));
 module.exports = __webpack_exports__;
 
 })();
