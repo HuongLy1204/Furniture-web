@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import { Box } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
@@ -8,11 +8,12 @@ import { PRODUCT_LIST } from "../productlist/product-list";
 import { Stack } from "@mui/material";
 import Logo from "../../../public/logo.svg";
 import Image from "next/image";
+import { useState } from "react";
 
 function HeaderMobile() {
   const ITEM_HEIGHT = 48;
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] =useState(null)
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

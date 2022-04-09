@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -7,9 +7,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { IconButton } from "@mui/material";
+import { useState } from "react";
 
 export default function ProductItem(props) {
-  const [isLike, setLike] = React.useState(false);
+  const [isLike, setLike] = useState(false)
 
   return (
     <Card sx={{ maxWidth: 300 }}>

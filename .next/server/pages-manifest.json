@@ -1,10 +1,8 @@
 {
-  "/500": "pages/500.js",
+  "/_error": "pages/_error.js",
   "/_app": "pages/_app.js",
+  "/": "pages/index.html",
+  "/san-pham": "pages/san-pham.html",
   "/_document": "pages/_document.js",
-  "/gioi-thieu": "pages/gioi-thieu.js",
-  "/": "pages/index.js",
-  "/404": "pages/404.js",
-  "/san-pham": "pages/san-pham.js",
-  "/_error": "pages/_error.js"
+  "/gioi-thieu": "pages/gioi-thieu.html"
 }
