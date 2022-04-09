@@ -19,19 +19,19 @@ export default class MyDocument extends Document {
 							integrity="undefined"
 							crossOrigin="anonymous"
 						/>
-					
+
 						<link
 							rel="stylesheet"
 							href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
 						/>
+						<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossOrigin="anonymous"></script>
+
 						{/* Inject MUI styles first to match with the prepend: true configuration. */}
 						{this.props.emotionStyleTags}
 					</Head>
 					<body>
-          
 						<Main />
 						<NextScript />
-            
 					</body>
 				</Html>
 			</>
