@@ -6,7 +6,9 @@ import Banner from "../components/common/header/Banner/Banner";
 import { PRODUCT_LIST } from "../components/common/productlist/product-list";
 import ProductItem from "../components/common/productlist/ProductItem";
 import MainLayout from "../components/layout/main";
-import ModelDesign from "../components/model-design/ModelDesign";
+
+import ModelDesignDesktop from "../components/model-design/ModelDesignDesktop";
+import ModelDesignMobile from "../components/model-design/ModelDesignMobile";
 import Process from "../public/quytrinh.svg"
 
 export default function HomePage() {
@@ -14,7 +16,8 @@ export default function HomePage() {
     <Box>
       <Banner />
       <AboutMe/>
-      <ModelDesign/>
+      <ModelDesignDesktop/>
+      <ModelDesignMobile/>
       <Container>
         <Typography
           align="center"
