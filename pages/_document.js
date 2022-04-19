@@ -19,12 +19,22 @@ export default class MyDocument extends Document {
 							integrity="undefined"
 							crossOrigin="anonymous"
 						/>
-
+						<link rel="preconnect" href="https://fonts.googleapis.com" />
+						<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+						<link
+							href="https://fonts.googleapis.com/css2?family=Ingrid+Darling&display=swap"
+							rel="stylesheet"
+						></link>
 						<link
 							rel="stylesheet"
 							href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
 						/>
-						<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossOrigin="anonymous"></script>
+						<script
+							defer
+							src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+							integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+							crossOrigin="anonymous"
+						></script>
 
 						{/* Inject MUI styles first to match with the prepend: true configuration. */}
 						{this.props.emotionStyleTags}

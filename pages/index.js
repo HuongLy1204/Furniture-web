@@ -1,14 +1,20 @@
 import { Container, Grid, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import Image from "next/image";
+import AboutMe from "../components/about-me/AboutMe";
 import Banner from "../components/common/header/Banner/Banner";
 import { PRODUCT_LIST } from "../components/common/productlist/product-list";
 import ProductItem from "../components/common/productlist/ProductItem";
 import MainLayout from "../components/layout/main";
+import ModelDesign from "../components/model-design/ModelDesign";
+import Process from "../public/quytrinh.svg"
 
 export default function HomePage() {
   return (
     <Box>
       <Banner />
+      <AboutMe/>
+      <ModelDesign/>
       <Container>
         <Typography
           align="center"
@@ -34,6 +40,7 @@ export default function HomePage() {
           ))}
         </Grid>
       </Container>
+     
     </Box>
   );
 }

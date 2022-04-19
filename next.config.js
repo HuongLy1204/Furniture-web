@@ -2,10 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
-}
-module.exports = {
   images: {
-    domains: ['example.com'],
+  
+    domains: ["images.unsplash.com"],
   },
 }
+
 module.exports = nextConfig
