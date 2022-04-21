@@ -5,11 +5,13 @@ import AboutMe from "../components/about-me/AboutMe";
 import Banner from "../components/common/header/Banner/Banner";
 import { PRODUCT_LIST } from "../components/common/productlist/product-list";
 import ProductItem from "../components/common/productlist/ProductItem";
+import Customer from "../components/WorksList";
 import MainLayout from "../components/layout/main";
 
 import ModelDesignDesktop from "../components/model-design/ModelDesignDesktop";
 import ModelDesignMobile from "../components/model-design/ModelDesignMobile";
 import Process from "../public/quytrinh.svg"
+import WorksList from "../components/WorksList";
 
 export default function HomePage() {
   return (
@@ -43,6 +45,7 @@ export default function HomePage() {
           ))}
         </Grid>
       </Container>
+     <WorksList/>
      
     </Box>
   );

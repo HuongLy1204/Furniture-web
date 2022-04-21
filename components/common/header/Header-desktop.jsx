@@ -13,7 +13,7 @@ function HeaderDesktop() {
   const router = useRouter();
 
   return (
-    <Box   border={0.05} pt={0} display={{ xs: "none", lg: "block" }}>
+    <Box zIndex={100} bgcolor={"white"} position={"fixed"} height={77} width={"100%"} borderColor={"gray"} borderBottom={0.03} pt={0} mt={0} display={{ xs: "none", lg: "block" }}>
       {/* <Image src={Logo} />  */}
 
       <Box size="lg">

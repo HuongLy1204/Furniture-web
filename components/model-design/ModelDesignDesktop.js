@@ -9,11 +9,25 @@ import Model4 from '../../public/banner-image/model4.svg'
 
 export default function ModelDesignDesktop() {
 	return (
-		<Box  display={{lg: "block", xs: "none"}} px={{ md: 10, xs: 5 }} height={900} bgcolor={'#EBEBEB'}>
+		<Box
+			display={{ lg: 'block', xs: 'none' }}
+			px={{ md: 10, xs: 5 }}
+			height={900}
+			bgcolor={'#EBEBEB'}
+		>
 			<Stack direction={{ xs: 'column', md: 'row' }}>
 				<Box width={{ md: '50%', xs: '100%' }} height={{ md: 900, xs: 400 }}>
 					<Stack direction={'column'}>
-						<Box width={'100%'} height={{ md: 500, xs: 200 }}>
+						<Box
+							sx={{
+								'&:hover': {
+									
+									opacity: [0.6,0.5],
+								},
+							}}
+							width={'100%'}
+							height={{ md: 500, xs: 200 }}
+						>
 							<Image alt="model1" layout="responsive" src={Model1} />
 						</Box>
 						<Box>
@@ -35,7 +49,7 @@ export default function ModelDesignDesktop() {
 										Sử dụng các chất liệu như nhựa giả đá, gương trang trí, nhựa vân gỗ để khiến
 										không gian phòng khách thêm hiện đại, tiết kiệm chi phí,..
 									</Typography>
-									<Button sx={{ my: 2, ml: 15 , color:"gray"}} variant="none">
+									<Button sx={{ my: 2, ml: 15, color: 'gray' }} variant="none">
 										KHÁM PHÁ
 									</Button>
 								</Box>
@@ -57,7 +71,7 @@ export default function ModelDesignDesktop() {
 												Sử dụng các chất liệu như nhựa giả đá, gương trang trí, nhựa vân gỗ để khiến
 												không gian phòng khách thêm hiện đại, tiết kiệm chi phí,..
 											</Typography>
-											<Button sx={{ my: 2, ml: 15 , color:"gray"}}  variant="none">
+											<Button sx={{ my: 2, ml: 15, color: 'gray' }} variant="none">
 												KHÁM PHÁ
 											</Button>
 										</Box>

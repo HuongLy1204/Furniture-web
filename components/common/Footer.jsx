@@ -6,7 +6,7 @@ import Logo from "../../public/logo.svg"
 function Footer(){
 
     return(
-        <Box bgcolor={"#8B9772"} height={500} border={0.1}>
+        <Box bgcolor={"#CFC9C6"} height={500} border={0.1}>
             <Stack direction={"column"}>
                 <Box height={470}>
                     <Stack direction={"row"}>
