@@ -9,22 +9,22 @@ import { Box } from '@mui/system'
 export default function WorksItem(props) {
 	console.log(props)
 	return (
-		<Box width={300}>
-			<Card sx={{ minHeight: '290px', maxHeight: 200, maxWidth: 300, padding: 0 }}>
+		<Box>
+			<Card sx={{ minHeight: '350px', maxHeight: 200, maxWidth: 380, padding: 0 }}>
 				<CardMedia
 					component="img"
 					sx={{
 						layout: 'responsive',
-						objectFit: 'scale-down',
-						minHeight: '190px',
-						maxHeight: 180,
-						maxWidth: 280,
+						objectFit: "fill",
+						height: 210,
+
+						maxWidth: '100%',
 					}}
 					image={props.dataWorks.image[1]}
 					alt="green iguana"
 				/>
 				<CardContent>
-					<Typography gutterBottom variant="h5" component="div">
+					<Typography gutterBottom variant="body1" component="div">
 						{props.dataWorks.title}
 					</Typography>
 					<Typography variant="body2" color="text.secondary">

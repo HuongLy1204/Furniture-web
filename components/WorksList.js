@@ -1,4 +1,4 @@
-import { Container, Grid, Stack } from "@mui/material";
+import { Container, Grid, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
 
@@ -12,11 +12,15 @@ export default function WorksList() {
     var settings = {
       dots: true,
       infinite: true,
-      slidesToShow: 5,
+      slidesToShow: 3,
+      centerMode:true,
+      centerPadding:30,
       slidesToScroll: 1,
+      focusOnSelect:true,
       autoplay: true,
       autoplaySpeed: 2000,
       pauseOnHover: true,
+      
       responsive: [
         {
           breakpoint: 1024,
@@ -32,31 +36,41 @@ export default function WorksList() {
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
-            initialSlide: 2
+            initialSlide: 2,
+            centerMode:false
           }
         },
         {
           breakpoint: 480,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            centerMode:false
           }
         }
       ]
     };
     return (
-      <Box py={{xs:3, md :7, lg:10}} bgcolor={"darkseagreen"} px={{xs:3, md :7, lg:10}} width={"100%"}>
+      <>
+      
+      <Box pb={{xs:3, md :7, lg:10}} bgcolor={"#BDB7B4"} px={{xs:3, md :10, lg:15}} width={"100%"}>
+      <Typography  mb={6} align="center" color={"darkslategray"} variant="h5" fontWeight={"bolder"}>
+          __CÁC CÔNG TRÌNH TIÊU BIỀU__
+        </Typography>
          
           <Slider slidesToShow={{sx:2}} {...settings}>
             
             {WORKS_LIST.map((item)=>(
-              <Grid  item xs={2} sm={4} md={1} key={item.id}>
-                 <WorksItem  dataWorks={item} ></WorksItem>
-              </Grid>
+             <Box key={item.id}>
+               <WorksItem  dataWorks={item} ></WorksItem>
+
+             </Box>
+             
              ))}
         </Slider>
       
         
       </Box>
+      </>
     );
   }

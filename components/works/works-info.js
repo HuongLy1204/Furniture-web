@@ -19,34 +19,50 @@ export const WORKS_LIST = [
 	},
 	{
 		id: '2',
-		title: '',
-		description: '',
+		title: 'GOLFZON PARK',
+		description: 'Sử dụng các loại gỗ, nhựa vân đá',
 		detail: '',
-		image: [],
+		image: [
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650556439/web%20a%20kha/works/golfzon/unnamed_wuwhas.png',
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650557038/web%20a%20kha/works/golfzon/Screen_Shot_2022-04-21_at_23.03.47_zjgkzo.png',
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650556274/web%20a%20kha/works/golfzon/Screen_Shot_2022-04-21_at_22.49.26_ijws0l.png',
+		],
 	},
 
 	{
 		id: '3',
-		title: '',
-		description: '',
+		title: 'PHUC KHANG PHARMACY',
+		description: 'biển hiệu',
 		detail: '',
-		image: [],
+		image: [
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650558356/web%20a%20kha/works/phuckhang/238026478_375479027418514_8663893559443504041_n_nk6mkd.jpg',
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650558352/web%20a%20kha/works/phuckhang/phuckhang_nqtk8j.jpg',
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650558353/web%20a%20kha/works/phuckhang/phuckhang1_z5lrkp.jpg',
+		],
 	},
 
 	{
 		id: '4',
-		title: '',
-		description: '',
+		title: 'OLAM FACTORY',
+		description: 'Nhà máy công ty Olam',
 		detail: '',
-		image: [],
+		image: [
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650559256/web%20a%20kha/works/Olam/578-5780727_olam-international-logo-olam-international-logo-png-clipart.png_essso4.jpg',
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650559265/web%20a%20kha/works/Olam/106340106_130292058714002_7228208310128367675_n_smbjuh.jpg',
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650559258/web%20a%20kha/works/Olam/118192729_153623059714235_2549974455439902529_n_r8vmr7.jpg',
+		],
 	},
 
 	{
 		id: '5',
-		title: '',
+		title: 'TIỆM VÀNG NGÔN',
 		description: '',
 		detail: '',
-		image: [],
+		image: [
+			'',
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650560162/web%20a%20kha/works/tiemvang/ngon_ypclk0.jpg',
+			'https://res.cloudinary.com/lynguyen/image/upload/v1650560158/web%20a%20kha/works/tiemvang/z3358743826646_05dca502dd25f7ad6fd173134ea1d619_b82z5m.jpg',
+		],
 	},
 
 	{
