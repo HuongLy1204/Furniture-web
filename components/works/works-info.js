@@ -65,11 +65,5 @@ export const WORKS_LIST = [
 		],
 	},
 
-	{
-		id: '6',
-		title: '',
-		description: '',
-		detail: '',
-		image: [],
-	},
+	
 ]

@@ -16,7 +16,7 @@ export default function WorksList() {
       centerMode:true,
       centerPadding:30,
       slidesToScroll: 1,
-      focusOnSelect:true,
+      
       autoplay: true,
       autoplaySpeed: 2000,
       pauseOnHover: true,
@@ -54,8 +54,8 @@ export default function WorksList() {
       <>
       
       <Box pb={{xs:3, md :7, lg:10}} bgcolor={"#BDB7B4"} px={{xs:3, md :10, lg:15}} width={"100%"}>
-      <Typography  mb={6} align="center" color={"darkslategray"} variant="h5" fontWeight={"bolder"}>
-          __CÁC CÔNG TRÌNH TIÊU BIỀU__
+      <Typography  py={6} align="center" color={"white"} variant="h5" fontWeight={"bolder"}>
+          CÁC CÔNG TRÌNH TIÊU BIỂU
         </Typography>
          
           <Slider slidesToShow={{sx:2}} {...settings}>

@@ -16,7 +16,7 @@ export default function ProductItem(props) {
   
 
   return (
-    <Card  sx={{minHeight:"290px", maxHeight: 200, maxWidth: 300, padding:0 }}>
+    <Card sx={{minHeight:"290px", maxHeight: 200, maxWidth: 300, padding:0 }}>
       <CardMedia
         sx={{ layout:"responsive", objectFit:"scale-down",minHeight: "190px", maxHeight: 180, maxWidth: 280}}
         component="img"
