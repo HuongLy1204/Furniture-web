@@ -34,7 +34,7 @@ const theme = createTheme({
         root: {
           color: "black",
           "&:hover, &.active": {
-            color: "orange",
+            color: "#A9A08D",
           },
         },
       },
