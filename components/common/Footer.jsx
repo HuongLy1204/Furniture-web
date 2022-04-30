@@ -13,8 +13,8 @@ function Footer() {
 		<Box bgcolor={'#545456'} height={500} border={0.1}>
 			<Stack direction={'column'}>
 				<Box height={470}>
-					<Stack alignItems={'center'} direction={'row'}>
-						<Box pt={7} pl={10} width={'25%'}>
+					<Stack alignItems={'center'} direction={{xs:"column", md:'row'}}>
+						<Box display={{xs:"none", md:"block"}} pt={7} pl={10} width={{sx:"100%", md:'25%'}}>
 							<Stack direction={'column'}>
 								<Typography fontSize={24} color={'white'} fontWeight={'bolder'}>
 									{' '}

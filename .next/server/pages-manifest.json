@@ -1,6 +1,5 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/_error": "pages/_error.js",
-  "/san-pham/tam-pvc-van-da": "pages/san-pham/tam-pvc-van-da.js"
+  "/_error": "pages/_error.js"
 }
