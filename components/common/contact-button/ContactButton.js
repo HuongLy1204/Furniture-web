@@ -7,7 +7,7 @@ import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled'
 
 export default function ContactButton() {
 	return (
-		<Box height={250} width={'auto'} sx={{ bottom: '3px', right: '1px' }} position={'fixed'}>
+		<Box display={{xs:"none", md:"block"}} height={250} width={'auto'} sx={{ bottom: '3px', right: '1px' }} position={'fixed'}>
 			<Stack direction={'column'}>
 				<Link
 					passHref
@@ -28,7 +28,7 @@ export default function ContactButton() {
 					href="https://www.facebook.com/profile.php?id=100028871515011"
 					component="button"
 				>
-					<Button sx={{ fontSize: 50 }}>
+					<Button  sx={{ fontSize: 50 }}>
 						<Image
 							width={60}
 							height={60}

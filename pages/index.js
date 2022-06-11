@@ -40,8 +40,8 @@ export default function HomePage() {
         >
           {PRODUCT_LIST.map((item) => (
             <Grid my={2} item xs={2} sm={4} md={4} key={item.id}>
-              <ProductItem dataItem={item}></ProductItem>
-            </Grid>
+            <ProductItem dataItem={item}></ProductItem>
+          </Grid>
           ))}
         </Grid>
       </Container>
