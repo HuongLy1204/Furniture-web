@@ -2,7 +2,6 @@ import Image from "next/image";
 import Banner1 from "../../../../public/banner-image/banner1.svg";
 import Banner2 from "../../../../public/banner-image/banner2.svg";
 import Banner3 from "../../../../public/banner-image/banner3.svg";
-import Banner4 from "../../../../public/banner-image/banner4.svg";
 
 
 export default function Banner() {

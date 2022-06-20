@@ -1,13 +1,12 @@
-import { Chip, Container, Link as MuiLink, Stack } from "@mui/material";
-import { Box } from "@mui/system";
-import Link from "next/link";
-import { ROUTE_LIST } from "./route";
-import Image from "next/image";
-import Logo from "../../../public/logo.svg";
-import { useRouter } from "next/router";
-import clsx from "clsx";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import { Typography } from "@mui/material";
+import { Chip, Link as MuiLink, Stack } from "@mui/material";
+import { Box } from "@mui/system";
+import clsx from "clsx";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Logo from "../../../public/logo.svg";
+import { ROUTE_LIST } from "./route";
 
 function HeaderDesktop() {
   const router = useRouter();

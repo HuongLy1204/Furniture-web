@@ -1,16 +1,14 @@
-import { Box, Link as MuiLink } from '@mui/system'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { Stack } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { PRODUCT_LIST } from '../productlist/product-list'
-import { Stack } from '@mui/material'
-import Logo from '../../../public/logo.svg'
+import { Box } from '@mui/system'
 import Image from 'next/image'
-import { useState } from 'react'
-import { ROUTE_LIST } from './route'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Logo from '../../../public/logo.svg'
+import { ROUTE_LIST } from './route'
 
 function HeaderMobile() {
 	const ITEM_HEIGHT = 48
@@ -36,7 +34,7 @@ function HeaderMobile() {
 		>
 			<Stack minHeight={50} justifyContent={'space-between'} direction="row">
 				<Box sx={{ width: 300 }}>
-					<Image sx={{ pt: 20 }} src={Logo} alt="logo" height={90} objectFit="scale-down" />––––––
+					<Image sx={{ pt: 20 }} src={Logo} alt="logo" height={90} objectFit="scale-down" />
 				</Box>
 				<Box>
 					<IconButton

@@ -1,13 +1,11 @@
-import * as React from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
-import { CardActionArea } from '@mui/material'
 import { Box } from '@mui/system'
+import * as React from 'react'
 
 export default function WorksItem(props) {
-	console.log(props)
 	return (
 		<Box>
 			<Card sx={{ minHeight: '350px', maxHeight: 200, maxWidth: 380, padding: 0 }}>

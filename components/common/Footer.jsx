@@ -1,12 +1,9 @@
-import { Chip, Icon, Stack, Typography } from '@mui/material'
-import { Box, typography } from '@mui/system'
-import Image from 'next/image'
-import Logo from '../../public/logo.svg'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
-import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled'
 import EmailIcon from '@mui/icons-material/Email'
 import LanguageIcon from '@mui/icons-material/Language'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
 import PhoneEnabled from '@mui/icons-material/PhoneEnabled'
+import { Chip, Stack, Typography } from '@mui/material'
+import { Box } from '@mui/system'
 
 function Footer() {
 	return (
