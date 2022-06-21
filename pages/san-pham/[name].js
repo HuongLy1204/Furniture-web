@@ -6,7 +6,7 @@ export default function ProductItemPage() {
   
     return (
     <Box >
-    
+    <h1>name</h1>
     </Box>
   )
   }

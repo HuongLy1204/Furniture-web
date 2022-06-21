@@ -9,16 +9,16 @@ export default function FilterBar(props) {
 			width={250}
 			// borderBottom={0.01}
 			// borderColor={'gray'}
-			key={props.dataCategory.id}
+
 		>
-			<Link xs={{ color: 'black' }} passHref href={`/san-pham/ `}>
+			<Link xs={{ color: 'black' }} passHref href={"/san-pham"}>
 				<MuiLink
 					sx={{ color: 'green', ml: 3 }}
 					fontSize={20}
 					//  className={clsx({ active: .pathname === item.path })}
 					variant="subtitle2"
 				>
-					{props.dataCategory.title}
+
 				</MuiLink>
 			</Link>
 		</Box>
