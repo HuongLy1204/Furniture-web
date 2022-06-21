@@ -10,7 +10,7 @@ export default function NavBar() {
             <Stack  direction="column" spacing={3 } alignItems="center">
 
 			<Box >
-				<Button  size='large' sx={{color:"darkgreen"}}  onClick={() => router.replace('/admin/category')}>DANH MỤC</Button>
+				<Button  size='large' sx={{color:"darkgreen"}}  onClick={() => router.replace('/admin')}>DANH MỤC</Button>
 			</Box>
 			<Box >
 				<Button size='large' sx={{color:"darkgreen"}} onClick={() => router.replace('/admin/products')}>SẢN PHẨM</Button>

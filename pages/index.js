@@ -15,27 +15,17 @@ import ModelDesignMobile from '../components/model-design/ModelDesignMobile'
 import WorksList from '../components/works/WorksList'
 
 export default function HomePage() {
-	const dispatch = useDispatch()
-
-	const [isLoading, setIsLoading] = useState(true)
 	
-
-	useEffect( () => {
-		// productsApi.getAll().then((response) => setData(response))
-		const actionResult = dispatch(productsThunk())
-		const currentProduct = unwrapResult(actionResult)
-		setIsLoading(false)
-
-	}, [])
+	const [isLoading, setIsLoading] = useState(true)
 	const data= useSelector(state=>state.products.current)
 
-	console.log(data,"data")
+
 	return (
 		<Box>
-			{isLoading ? (
+			{/* {isLoading ? (
 				<LoadingIcon />
-			) : (
-				<>
+			) : ( */}
+			
 					<Banner />
 					<AboutMe />
 					<ModelDesignDesktop />
@@ -71,8 +61,7 @@ export default function HomePage() {
 						</Box>
 					</Container>
 					<WorksList />
-				</>
-			)}
+		
 		</Box>
 	)
 }

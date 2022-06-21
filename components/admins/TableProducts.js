@@ -3,19 +3,22 @@ import {
 	Box,
 	Button,
 	Chip,
-	Modal, Table,
+	Modal,
+	Table,
 	TableBody,
 	TableContainer,
 	TableHead,
-	TableRow
+	TableRow,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import { useState } from 'react'
-import { CATALOGUE } from '../filter-bar/catalog'
+import { useSelector } from 'react-redux'
 import EditForm from './EditForm'
 
 export default function TableProducts() {
+	const categories = useSelector((state) => state.products.current)
+
 	const StyledTableCell = styled(TableCell)(({ theme }) => ({
 		[`&.${tableCellClasses.head}`]: {
 			backgroundColor: theme.palette.common.white,
@@ -48,54 +51,59 @@ export default function TableProducts() {
 		boxShadow: '10px 10px 5px #aaaaaa',
 	}
 
+	const renderListProducts = () => {
+		return categories.map((category) => {
+			return category?.products?.map((product) => {
+				return (
+					<StyledTableRow key={product.id}>
+						<StyledTableCell>{product.title}</StyledTableCell>
+						<StyledTableCell>{product.description}</StyledTableCell>
+						<StyledTableCell>{product.avatars?.map(ava=>{
+							return <>{ava.image_url}<br/></>
+						})}</StyledTableCell>
+						<StyledTableCell>{category.title}</StyledTableCell>
+						<StyledTableCell>ly</StyledTableCell>
+					</StyledTableRow>
+				)
+			})
+		})
+	}
+
 	return (
 		<Box>
-			<Button sx={{mt:"25px", ml:"20px"}}>
-
-			<Chip label="Thêm sản phẩm" color="success" icon={<AddCircleOutlineIcon />} />
+			<Button sx={{ mt: '25px', ml: '20px' }}>
+				<Chip label="Thêm sản phẩm" color="success" icon={<AddCircleOutlineIcon />} />
 			</Button>
 
 			<TableContainer>
 				<Table>
 					<TableHead>
 						<TableRow>
-							<StyledTableCell>ID</StyledTableCell>
-							<StyledTableCell> TIÊU ĐỀ</StyledTableCell>
-                            <StyledTableCell> HÌNH ẢNH</StyledTableCell>
-                            <StyledTableCell>MÔ TẢ</StyledTableCell>
-
-
+							<StyledTableCell>Tên sản phẩm</StyledTableCell>
+							<StyledTableCell>Mô Tả</StyledTableCell>
+							<StyledTableCell>Hình Ảnh</StyledTableCell>
+							<StyledTableCell>Loại</StyledTableCell>
 							<StyledTableCell align="center">TÁC VỤ</StyledTableCell>
 						</TableRow>
 					</TableHead>
-					<TableBody>
-						{CATALOGUE.map((item) => (
-							<StyledTableRow key={item.lable}>
-								<StyledTableCell>1</StyledTableCell>
-								<StyledTableCell component="th" scope="row">
-									{item.label}
-								</StyledTableCell>
-								<StyledTableCell align="center">
-									<Button onClick={handleOpen}>Chỉnh sửa</Button>
-									<Modal
-										//  hideBackdrop="true"
-
-										open={open}
-										onClose={handleClose}
-										// aria-labelledby="modal-modal-title"
-										// aria-describedby="modal-modal-description"
-									>
-										<Box sx={style}>
-											<EditForm boxShadow="none" data={item.label}></EditForm>
-										</Box>
-									</Modal>
-									<Button>XOÁ</Button>
-								</StyledTableCell>
-							</StyledTableRow>
-						))}
-					</TableBody>
+					<TableBody>{renderListProducts()}</TableBody>
 				</Table>
 			</TableContainer>
 		</Box>
 	)
 }
+// {
+// 	/* <Button onClick={handleOpen}>Chỉnh sửa</Button>
+// 									<Modal
+// 										//  hideBackdrop="true"
+
+// 										open={open}
+// 										onClose={handleClose}
+// 										// aria-labelledby="modal-modal-title"
+// 										// aria-describedby="modal-modal-description"
+// 									>
+// 										<Box sx={style}>
+// 											<EditForm boxShadow="none" data={category.label}></EditForm>
+// 										</Box>
+// 									</Modal>
+// 									<Button>XOÁ</Button> */

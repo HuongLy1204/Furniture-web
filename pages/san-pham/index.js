@@ -1,40 +1,69 @@
-import { Grid, Stack } from '@mui/material'
+import { Grid, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { PRODUCT_LIST } from '../../components/common/productlist/product-list'
 import ProductItem from '../../components/common/productlist/ProductItem'
 import FilterBar from '../../components/filter-bar/filterBar'
 import MainLayout from '../../components/layout/main'
+ProductPage.Layout = MainLayout
 
 export default function ProductPage() {
-	const data= useSelector(state=>state.products.current)
+	const categories = useSelector((state) => state.products.current)
+	const [categoryIdActive, setCategoryIdActive] = useState(0)
+	console.log(categories,"cate");
+	console.log(categoryIdActive,"idac");
 
+	useEffect(()=>{
+		setCategoryIdActive(categories[0]?.id)
+	},[categories])
+
+
+	const renderListProductOfCategory = () => {
+		const categoryActive = categories.filter((category) => category.id == categoryIdActive)
+
+		return categoryActive[0]?.products?.map((product) => {
+			return (
+				<>
+					<Grid my={2} item xs={2} sm={4} md={4} key={product.id}>
+						<Box key={product.id}>
+							<ProductItem dataItem={product}></ProductItem>
+						</Box>
+					</Grid>
+				</>
+			)
+		})
+	}
 
 	return (
 		<Box>
 			<Stack direction={'row'}>
-				{data.map((category=> 
-					<>
-					<FilterBar dataCategory= {category}></FilterBar>
-				<Box display="inline" mt={15} ml={10}>
-					<Grid
-						container
-						alignItems="center"
-						spacing={{ xs: 2, md: 1 }}
-						columns={{ xs: 4, sm: 8, md: 12 }}
-					>
-						{category.products.map((product) => (
-							<Grid my={2} item xs={2} sm={4} md={4} key={product.id}>
-								<ProductItem dataItem={product}></ProductItem>
-							</Grid>
-						))}
-					</Grid>
+				<Box  ml={5} mr={5} width="100%" my={{ sx: 0, lg: 20 }}>
+					<Stack  direction="column">
+						<Typography mb={3} fontSize={24} fontWeight={'bolder'}>
+							DANH MỤC
+						</Typography>
+						<Box width="100%" >
+							<Stack  direction="row">
+								<Box boxShadow={2}  mr={4} width="20%" >
+									{categories.map((category) => (
+										<Box boxShadow={1}  mt={2} key={category.id}>
+											<FilterBar dataCategory={category}></FilterBar>
+											<Box display="inline" mt={5} ml={1}></Box>
+										</Box>
+									))}
+								</Box>
+
+								<Box width="80%" >
+									{renderListProductOfCategory()}
+								</Box>
+							</Stack>
+						</Box>
+					</Stack>
 				</Box>
-					</>))}
-				
 			</Stack>
 		</Box>
 	)
 }
-
-ProductPage.Layout = MainLayout
+/* <Box>
+								
+// </Box> */

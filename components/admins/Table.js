@@ -8,18 +8,15 @@ import {
 	TableBody,
 	TableContainer,
 	TableHead,
-	TableRow,
+	TableRow
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { CATALOGUE } from '../filter-bar/catalog'
 import EditForm from './EditForm'
 
-export default function TableCustomize() {
+export default function TableCustomize({dataCategory}) {
 
-	console.log(dataCategory, 'admin')
 	const StyledTableCell = styled(TableCell)(({ theme }) => ({
 		[`&.${tableCellClasses.head}`]: {
 			backgroundColor: theme.palette.common.white,

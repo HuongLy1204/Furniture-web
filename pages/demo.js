@@ -30,7 +30,7 @@ export default function DemoUploadImage() {
 		}).then((r) => r.json())
 
 		setImageSrc(data.secure_url)
-        console.log(data);
+
 	}
 	return (
 		<Box>

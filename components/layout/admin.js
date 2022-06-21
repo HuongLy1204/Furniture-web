@@ -1,13 +1,14 @@
 import { Box, Stack } from '@mui/material'
 import Dashboar from '../admins/Dashboar'
 import NavBar from '../admins/NavBar'
+import Header from '../common/header/Header'
 
 export default function AdminLayout({ children }) {
 	return (
 		<Box minHeight="100%">
 			<Stack direction="column">
 				<Box>
-					<Dashboar></Dashboar>
+					<Header/>
 				</Box>
 				<Box>
 					<Stack height="100%" direction="row">

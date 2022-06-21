@@ -16,7 +16,7 @@ const product = createSlice({
 	reducers: {
 		addProduct: (state, action) => {
 			state.current.push(action.payload)
-			console.log(state, 'slice')
+
 		},
 		deleteProduct: (state, action) => {
 			const deleteProduct = action.payload

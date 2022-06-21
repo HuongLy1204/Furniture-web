@@ -1,10 +1,17 @@
-import Dashboar from '../../components/admins/Dashboar'
+import { useSelector } from 'react-redux'
+import Tables from '../../components/admins/Table'
 import AdminLayout from '../../components/layout/admin'
 
-export default function AdminPage() {
-	return <></>
+export default function CategoryPage() {
+	const dataCategory = useSelector((state) => state.products.current)
+
+	return (
+		<>
+			<Tables dataCategory={dataCategory}></Tables>
+		</>
+	)
 }
-AdminPage.Layout = AdminLayout
+CategoryPage.Layout = AdminLayout
 
 export async function getStaticProps(context) {
 	return {
