@@ -2,10 +2,7 @@ import { Box, Link as MuiLink } from '@mui/material'
 import Link from 'next/link'
 
 export default function FilterBar(props) {
-	const path = props.dataCategory.title
-
-	const enpoint = path.replace('', '-')
-
+	
 	return (
 		<Box
 			height={5}
@@ -14,7 +11,7 @@ export default function FilterBar(props) {
 			// borderColor={'gray'}
 			key={props.dataCategory.id}
 		>
-			<Link xs={{ color: 'black' }} passHref href={`/san-pham/ ${enpoint}`}>
+			<Link xs={{ color: 'black' }} passHref href={`/san-pham/ `}>
 				<MuiLink
 					sx={{ color: 'green', ml: 3 }}
 					fontSize={20}
