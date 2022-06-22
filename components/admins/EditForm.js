@@ -1,8 +1,25 @@
-import { Box } from '@mui/system'
-import TextField from '@mui/material/TextField'
 import { Button, Stack, Typography } from '@mui/material'
+import { Box } from '@mui/system'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import productsApi from '../../Api/productsApi'
+
+
+const preventDefault = f => e => {
+	e.preventDefault()
+	f(e)
+  }
 
 export default function EditForm() {
+	const [value, setValue] = useState('')
+	// const { register, handleSubmit } = useForm()
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		console.log(e)
+		const res = await productsApi.createCategory({ title: "dem cam su" })
+		console.log(res)
+	}
 	return (
 		<Box
 			width={500}
@@ -13,13 +30,15 @@ export default function EditForm() {
 				width: 400,
 			}}
 		>
-			<Stack direction="column">
-				<Typography mt={3} color={'darkgreen'} variant="button" align="center">
-					Chỉnh sửa danh mục
-				</Typography>
-				<TextField  id="danh mục" label="Danh mục" variant="outlined" />
-				<Button >CẬP NHẬT</Button>
-			</Stack>
+			<form action="" onSubmit="{handleSubmit}">
+				<input type="text" name="title" />
+			</form>
+			{/* <form onSubmit={handleSubmit}> */}
+				{/* <input {...register('title')}></input> */}
+				{/* <input {...register('thang')}/> */}
+				{/* <input type="text" placeholder="thang123" /> */}
+				{/* <input type="submit">tao</input> */}
+			{/* </form> */}
 		</Box>
 	)
 }

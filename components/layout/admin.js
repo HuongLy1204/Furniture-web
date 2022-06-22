@@ -10,12 +10,12 @@ export default function AdminLayout({ children }) {
 				<Box>
 					<Header/>
 				</Box>
-				<Box>
+				<Box mr={5}>
 					<Stack height="100%" direction="row">
 						<Box  minHeight="100%" width="15%">
 							<NavBar></NavBar>
 						</Box>
-						<Box boxShadow={5}  mt={13} minHeight="100%" width="85%">
+						<Box  boxShadow={5}  mt={13} minHeight="100%" width="85%">
 							<Box>{children}</Box>
 						</Box>
 					</Stack>

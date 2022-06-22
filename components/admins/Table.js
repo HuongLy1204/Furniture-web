@@ -8,14 +8,18 @@ import {
 	TableBody,
 	TableContainer,
 	TableHead,
-	TableRow
+	TableRow,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import EditForm from './EditForm'
 
-export default function TableCustomize({dataCategory}) {
+export default function TableCustomize() {
+	const [open, setOpen] = useState(false)
+	const dataCategory = useSelector((state) => state.products.current)
+
 
 	const StyledTableCell = styled(TableCell)(({ theme }) => ({
 		[`&.${tableCellClasses.head}`]: {
@@ -35,9 +39,6 @@ export default function TableCustomize({dataCategory}) {
 			border: 0,
 		},
 	}))
-	const [open, setOpen] = useState(false)
-	const handleOpen = () => setOpen(true)
-	const handleClose = () => setOpen(false)
 
 	const style = {
 		position: 'absolute',
@@ -49,11 +50,13 @@ export default function TableCustomize({dataCategory}) {
 		boxShadow: '10px 10px 5px #aaaaaa',
 	}
 
+
+	const handleOpen = () => setOpen(true)
+	const handleClose = () => setOpen(false)
+	
 	return (
 		<Box>
-			<Button sx={{ mt: '25px', ml: '20px' }}>
-				<Chip label="Thêm danh mục" color="success" icon={<AddCircleOutlineIcon />} />
-			</Button>
+			
 
 			<TableContainer>
 				<Table>
@@ -68,7 +71,7 @@ export default function TableCustomize({dataCategory}) {
 					<TableBody>
 						{dataCategory.map((item) => (
 							<StyledTableRow key={item.id}>
-								<StyledTableCell>1</StyledTableCell>
+								<StyledTableCell>{item.id}</StyledTableCell>
 								<StyledTableCell component="th" scope="row">
 									{item.title}
 								</StyledTableCell>
@@ -78,7 +81,7 @@ export default function TableCustomize({dataCategory}) {
 										//  hideBackdrop="true"
 
 										open={open}
-										onClose={handleClose}
+										// onClose={handleClose}
 										// aria-labelledby="modal-modal-title"
 										// aria-describedby="modal-modal-description"
 									>

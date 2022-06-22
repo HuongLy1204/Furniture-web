@@ -1,14 +1,11 @@
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import {
 	Box,
-	Button,
-	Chip,
-	Modal,
+	Button, Modal,
 	Table,
 	TableBody,
 	TableContainer,
 	TableHead,
-	TableRow,
+	TableRow
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
@@ -56,13 +53,29 @@ export default function TableProducts() {
 			return category?.products?.map((product) => {
 				return (
 					<StyledTableRow key={product.id}>
+						<StyledTableCell>{product.id}</StyledTableCell>
 						<StyledTableCell>{product.title}</StyledTableCell>
 						<StyledTableCell>{product.description}</StyledTableCell>
-						<StyledTableCell>{product.avatars?.map(ava=>{
-							return <>{ava.image_url}<br/></>
-						})}</StyledTableCell>
+						<StyledTableCell>
+							{product.avatars?.map((ava) => {
+								return (
+									<>
+										{ava.image_url}
+										<br />
+									</>
+								)
+							})}
+						</StyledTableCell>
 						<StyledTableCell>{category.title}</StyledTableCell>
-						<StyledTableCell>ly</StyledTableCell>
+						<StyledTableCell>
+							<Button onClick={handleOpen}>Chỉnh sửa</Button>
+							<Modal open={open} onClose={handleClose}>
+								<Box sx={style}>
+									<EditForm boxShadow="none" data={category.label}></EditForm>
+								</Box>
+							</Modal>
+							<Button>XOÁ</Button>
+						</StyledTableCell>
 					</StyledTableRow>
 				)
 			})
@@ -71,14 +84,11 @@ export default function TableProducts() {
 
 	return (
 		<Box>
-			<Button sx={{ mt: '25px', ml: '20px' }}>
-				<Chip label="Thêm sản phẩm" color="success" icon={<AddCircleOutlineIcon />} />
-			</Button>
-
 			<TableContainer>
 				<Table>
 					<TableHead>
 						<TableRow>
+							<StyledTableCell>ID</StyledTableCell>
 							<StyledTableCell>Tên sản phẩm</StyledTableCell>
 							<StyledTableCell>Mô Tả</StyledTableCell>
 							<StyledTableCell>Hình Ảnh</StyledTableCell>
@@ -92,18 +102,3 @@ export default function TableProducts() {
 		</Box>
 	)
 }
-// {
-// 	/* <Button onClick={handleOpen}>Chỉnh sửa</Button>
-// 									<Modal
-// 										//  hideBackdrop="true"
-
-// 										open={open}
-// 										onClose={handleClose}
-// 										// aria-labelledby="modal-modal-title"
-// 										// aria-describedby="modal-modal-description"
-// 									>
-// 										<Box sx={style}>
-// 											<EditForm boxShadow="none" data={category.label}></EditForm>
-// 										</Box>
-// 									</Modal>
-// 									<Button>XOÁ</Button> */

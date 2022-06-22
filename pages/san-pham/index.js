@@ -10,13 +10,10 @@ ProductPage.Layout = MainLayout
 export default function ProductPage() {
 	const categories = useSelector((state) => state.products.current)
 	const [categoryIdActive, setCategoryIdActive] = useState(0)
-	console.log(categories,"cate");
-	console.log(categoryIdActive,"idac");
 
-	useEffect(()=>{
+	useEffect(() => {
 		setCategoryIdActive(categories[0]?.id)
-	},[categories])
-
+	}, [categories])
 
 	const renderListProductOfCategory = () => {
 		const categoryActive = categories.filter((category) => category.id == categoryIdActive)
@@ -37,25 +34,22 @@ export default function ProductPage() {
 	return (
 		<Box>
 			<Stack direction={'row'}>
-				<Box  ml={5} mr={5} width="100%" my={{ sx: 0, lg: 20 }}>
-					<Stack  direction="column">
+				<Box ml={5} mr={5} width="100%" my={{ sx: 0, lg: 20 }}>
+					<Stack direction="column">
 						<Typography mb={3} fontSize={24} fontWeight={'bolder'}>
 							DANH MỤC
 						</Typography>
-						<Box width="100%" >
-							<Stack  direction="row">
-								<Box boxShadow={2}  mr={4} width="20%" >
+						<Box width="100%">
+							<Stack direction="row">
+								<Box boxShadow={2} mr={4} width="20%">
 									{categories.map((category) => (
-										<Box boxShadow={1}  mt={2} key={category.id}>
+										<Box boxShadow={1} mt={2} key={category.id}>
 											<FilterBar dataCategory={category}></FilterBar>
 											<Box display="inline" mt={5} ml={1}></Box>
 										</Box>
 									))}
 								</Box>
-
-								<Box width="80%" >
-									{renderListProductOfCategory()}
-								</Box>
+								<Box width="80%">{renderListProductOfCategory()}</Box>
 							</Stack>
 						</Box>
 					</Stack>

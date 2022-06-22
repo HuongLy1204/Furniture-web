@@ -1,31 +1,29 @@
 import { Container, Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { unwrapResult } from '@reduxjs/toolkit'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import productsApi from '../Api/productsApi'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import AboutMe from '../components/about-me/AboutMe'
 import Banner from '../components/common/header/Banner/Banner'
 import LoadingIcon from '../components/common/Loading'
 import ProductItem from '../components/common/productlist/ProductItem'
-import { addProduct, productsThunk } from '../components/common/productlist/productSlice'
 import MainLayout from '../components/layout/main'
 import ModelDesignDesktop from '../components/model-design/ModelDesignDesktop'
 import ModelDesignMobile from '../components/model-design/ModelDesignMobile'
 import WorksList from '../components/works/WorksList'
 
 export default function HomePage() {
-	
-	const [isLoading, setIsLoading] = useState(true)
-	const data= useSelector(state=>state.products.current)
-
+	const [isLoading, setIsLoading] = useState(false)
+	const data = useSelector((state) => state.products.current)
+	if (!data) {
+		setIsLoading(true)
+	}
 
 	return (
 		<Box>
-			{/* {isLoading ? (
+			{isLoading ? (
 				<LoadingIcon />
-			) : ( */}
-			
+			) : (
+				<>
 					<Banner />
 					<AboutMe />
 					<ModelDesignDesktop />
@@ -61,7 +59,8 @@ export default function HomePage() {
 						</Box>
 					</Container>
 					<WorksList />
-		
+				</>
+			)}
 		</Box>
 	)
 }
