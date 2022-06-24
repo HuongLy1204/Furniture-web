@@ -1,55 +1,70 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import React from 'react'
-
 import { Button, Chip, Input, Stack } from '@mui/material'
 import { Box } from '@mui/system'
-import { forwardRef } from 'react'
-import { useState } from 'react'
+import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 import productsApi from '../../Api/productsApi'
 import TableProducts from '../../components/admins/TableProducts'
 import AdminLayout from '../../components/layout/admin'
-import { useSelector } from 'react-redux'
-
-
-
-
-
-// you can use React.forwardRef to pass the ref too
-// eslint-disable-next-line react/display-name
-const Select = forwardRef(({ onChange, onBlur, name, label }, ref) =>{
-	const categories = useSelector((state) => state.products.current)
-
-	return(
-		<>
-	  <label>{label}</label>
-	  <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-		{categories.map(category=> {
-			<option value="ly">ly</option>
-		} 
-			
-		)}
-		
-		
-	  </select>
-	</>
-
-  )});
 
 export default function ProductsPage() {
-
 	const [isOpen, setIsOpen] = useState(false)
+	const [imageSrc, setImageSrc] = useState('')
+	const [imageUrl, setUrl] = useState('')
+	const [listImage, setListImage] = useState([])
+	// const [a, setA]= useState()
+
 	const { register, handleSubmit } = useForm()
+	const categories = useSelector((state) => state.products.current)
+
 	const handleOpen = () => {
 		setIsOpen(!isOpen)
 	}
 	const onSubmit = async (data) => {
-		const res = await productsApi.createProduct({ title: data.title,
-		description:data.description })
-		console.log(res);
+		const newProduct = {
+			title: data.title,
+			description: data.description,
+			category_id: data.category,
+			image_urls: listImage
+		}
+
+		const res = await productsApi.createProduct(newProduct)
 		setIsOpen(!isOpen)
 	}
+	const handleOnChange = (event) => {
+		const reader = new FileReader()
 
+		reader.onload = (onLoadEvent) => {
+			setImageSrc(onLoadEvent.target.result)
+		}
+		reader.readAsDataURL(event.target.files[0])
+	}
+	async function handleOnSubmit(event) {
+		event.preventDefault()
+		const form = event.currentTarget
+
+		const fileInput = Array.from(form.elements).find(({ name }) => name === 'file')
+
+		const formData = new FormData()
+		for (const file of fileInput.files) {
+			formData.append('file', file)
+		}
+		formData.append('upload_preset', 'my-uploads')
+		const data = await fetch('https://api.cloudinary.com/v1_1/lynguyen/image/upload', {
+			method: 'POST',
+			body: formData,
+		}).then((r) => r.json())
+
+		setUrl(data.secure_url)
+	}
+
+	useEffect(() => {
+		if (imageUrl == '') return
+		setListImage([...listImage, imageUrl])
+	}, [imageUrl])
+	console.log(listImage, 'list')
 	return (
 		<Box>
 			<Stack direction="column">
@@ -77,11 +92,27 @@ export default function ProductsPage() {
 									{...register('description')}
 								></Input>
 								<br />
-								<Select label="Loại" {...register('cate')}></Select>
+								<select {...register('category')}>
+									{categories.map((category) => {
+										return (
+											<option key={category.id} value={category.id}>
+												{category.title}
+											</option>
+										)
+									})}
+								</select>
+
 								<br />
 								<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
 									THÊM
 								</Button>
+							</form>
+							<form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
+								<input name="file" type="file"></input>
+								{imageSrc && <button>Upload Files</button>}
+								{imageSrc && (
+									<Image width={50} height={50} layout="fixed" alt="uploadImg" src={imageSrc} />
+								)}
 							</form>
 						</Box>
 					) : (
@@ -97,8 +128,6 @@ export default function ProductsPage() {
 ProductsPage.Layout = AdminLayout
 
 export async function getStaticProps(context) {
-
-
 	return {
 		props: {
 			protected: true,

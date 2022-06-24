@@ -30,12 +30,12 @@ export default function DemoUploadImage() {
 		}).then((r) => r.json())
 
 		setImageSrc(data.secure_url)
-
+		
 	}
 	return (
 		<Box>
 			<Typography>Upload image</Typography>
-			<form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
+			<form method="post" onChange={handleOnChange}  onSubmit={handleOnSubmit}>
 				<input name="file" type="file"></input>
 				{imageSrc && <button>Upload Files</button>}
 				{imageSrc && (
