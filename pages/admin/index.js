@@ -8,11 +8,13 @@ import { useState } from 'react'
 import { useForm } from "react-hook-form";
 import axiosClient from '../../Api/axiosClient'
 import productsApi from '../../Api/productsApi'
+import { useRouter } from 'next/router'
 
 export default function CategoryPage() {
 
 	const [isOpen, setIsOpen] = useState(false)
 	const {register, handleSubmit}= useForm()
+	
 	const handleOpen = () => {
 		setIsOpen(!isOpen)
 	}
@@ -42,7 +44,9 @@ export default function CategoryPage() {
 
 				<Tables ></Tables>
 			</Stack>
+			
 		</Box>
+
 	)
 }
 CategoryPage.Layout = AdminLayout
