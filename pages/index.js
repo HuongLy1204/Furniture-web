@@ -43,12 +43,13 @@ export default function HomePage() {
 										{category.title}
 									</Typography>
 									<Grid
+										bgcolor={'red'}
 										container
 										alignItems="center"
 										spacing={{ xs: 2, md: 2.5 }}
 										columns={{ xs: 4, sm: 8, md: 12 }}
 									>
-										<Grid my={2} item xs={2} sm={4} md={4} key={category.id}>
+										<Grid bgcolor={'yellow'} item xs={2} sm={4} md={4} key={category.id}>
 											{category.products.map((product) => (
 												<ProductItem key={product.id} dataItem={product}></ProductItem>
 											))}

@@ -3,13 +3,9 @@ import { Box } from '@mui/system'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import NavBar from '../../components/admins/NavBar'
-import ContactButton from '../../components/common/contact-button/ContactButton'
 import ProductItem from '../../components/common/productlist/ProductItem'
 import FilterBar from '../../components/filter-bar/filterBar'
-import AdminLayout from '../../components/layout/admin'
 import MainLayout from '../../components/layout/main'
-import ProductLayout from '../../components/layout/product'
 
 export default function ProductItemPage() {
 	const router = useRouter()
@@ -27,7 +23,16 @@ export default function ProductItemPage() {
 		return categoryActive[0]?.products?.map((product) => {
 			return (
 				<>
-					<Grid my={2} item xs={2} sm={4} md={4} key={product.id}>
+					<Grid
+						flexDirection={'row'}
+						bgcolor={'red'}
+						my={2}
+						item
+						xs={2}
+						sm={4}
+						md={4}
+						key={product.id}
+					>
 						<Box key={product.id}>
 							<ProductItem dataItem={product}></ProductItem>
 						</Box>
@@ -49,7 +54,6 @@ export default function ProductItemPage() {
 							<Stack direction="row">
 								<Box boxShadow={2} mr={4} width="20%">
 									{categories.map((category) => (
-										
 										<Box boxShadow={1} mt={2} key={category.id}>
 											<FilterBar pathName={name} dataCategory={category}></FilterBar>
 											<Box display="inline" mt={5} ml={1}></Box>
