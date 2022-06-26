@@ -8,6 +8,8 @@ import store from '../app/store'
 import { AuthProvider, useAuth } from '../components/Auth/Auth'
 import createEmotionCache from '../utils/create-emotion-cache'
 import theme from '../utils/theme'
+import "../styles/globals.css"
+
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()

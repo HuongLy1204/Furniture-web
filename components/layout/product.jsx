@@ -9,7 +9,7 @@ import MainLayout from './main'
 
 export default function ProductLayout({ children }) {
 	const categories = useSelector((state) => state.products?.current)
-  console.log(categories,"bờm chsi điên"); 
+	console.log(categories, 'bờm chsi điên')
 
 	return (
 		<MainLayout>
@@ -27,7 +27,7 @@ export default function ProductLayout({ children }) {
 											{categories.map((category) => {
 												<Box boxShadow={1} mt={2} key={category.id}>
 													<FilterBar dataCategory={category}></FilterBar>
-                          <h1 id='thang'>jnn</h1>
+
 													<Box display="inline" mt={5} ml={1}></Box>
 												</Box>
 											})}

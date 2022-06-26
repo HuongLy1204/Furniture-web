@@ -43,17 +43,19 @@ export default function HomePage() {
 										{category.title}
 									</Typography>
 									<Grid
-										bgcolor={'red'}
+
 										container
 										alignItems="center"
-										spacing={{ xs: 2, md: 2.5 }}
+										spacing={{ xs: 2, md: 1 }}
 										columns={{ xs: 4, sm: 8, md: 12 }}
 									>
-										<Grid bgcolor={'yellow'} item xs={2} sm={4} md={4} key={category.id}>
-											{category.products.map((product) => (
-												<ProductItem key={product.id} dataItem={product}></ProductItem>
-											))}
-										</Grid>
+										{category.products.map((product) => {
+											return (
+												<Grid my={2} item xs={2} sm={4} md={4} key={category.id}>
+													<ProductItem key={product.id} dataItem={product}></ProductItem>
+												</Grid>
+											)
+										})}
 									</Grid>
 								</>
 							))}

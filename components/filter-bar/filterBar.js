@@ -4,14 +4,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 export default function FilterBar(props) {
-	console.log(props.dataCategory,"ly");
+
 	const text = props.dataCategory?.title
 	const pathName= props.pathName
 	const path = text?.split(' ').join('-')
 	const endpoint= `/san-pham/${path}`
 	const router=useRouter()
 
-	console.log(pathName,"kdhj");
 	return (
 		<Box
 			height={5}

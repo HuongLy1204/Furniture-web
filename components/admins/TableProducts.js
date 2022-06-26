@@ -1,14 +1,16 @@
 import {
 	Box,
-	Button, Modal,
+	Button,
+	Modal,
 	Table,
 	TableBody,
 	TableContainer,
 	TableHead,
-	TableRow
+	TableRow,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
+import Image from 'next/image'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import EditForm from './EditForm'
@@ -57,14 +59,17 @@ export default function TableProducts() {
 						<StyledTableCell>{product.title}</StyledTableCell>
 						<StyledTableCell>{product.description}</StyledTableCell>
 						<StyledTableCell>
+							<Box sx={{display:"flex", direction:"row", flexWrap:"wrap"}} >
 							{product.avatars?.map((ava) => {
 								return (
-									<>
-										{ava.image_url}
+									<Box ml={1}  key={ava.id}>
+									<Image width={50} height={50} fill="fixed" alt='hinhanh' src ={ava.image_url}></Image>
+										
 										<br />
-									</>
+									</Box>
 								)
 							})}
+							</Box>
 						</StyledTableCell>
 						<StyledTableCell>{category.title}</StyledTableCell>
 						<StyledTableCell>

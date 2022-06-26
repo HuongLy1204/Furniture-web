@@ -11,31 +11,17 @@ export default function ProductItemPage() {
 	const router = useRouter()
 	const { name } = router.query
 	const categories = useSelector((state) => state.products.current)
-	const [categoryIdActive, setCategoryIdActive] = useState(0)
 
-	useEffect(() => {
-		setCategoryIdActive(categories[0]?.id)
-	}, [categories])
+	const enpoint = name?.split('-').join(' ')
 
 	const renderListProductOfCategory = () => {
-		const categoryActive = categories.filter((category) => category.id == categoryIdActive)
+		const categoryActive = categories.findIndex((category) => category.title == enpoint)
 
-		return categoryActive[0]?.products?.map((product) => {
+		return categories[categoryActive]?.products?.map((product) => {
 			return (
 				<>
-					<Grid
-						flexDirection={'row'}
-						bgcolor={'red'}
-						my={2}
-						item
-						xs={2}
-						sm={4}
-						md={4}
-						key={product.id}
-					>
-						<Box key={product.id}>
-							<ProductItem dataItem={product}></ProductItem>
-						</Box>
+					<Grid my={2} item xs={2} sm={4} md={4}>
+						<ProductItem dataItem={product}></ProductItem>
 					</Grid>
 				</>
 			)
@@ -60,7 +46,16 @@ export default function ProductItemPage() {
 										</Box>
 									))}
 								</Box>
-								<Box width="80%">{renderListProductOfCategory()}</Box>
+								<Box ml={4} width="80%">
+									<Grid
+										container
+										alignItems="center"
+										spacing={{ xs: 2, md: 1 }}
+										columns={{ xs: 4, sm: 8, md: 12 }}
+									>
+										{renderListProductOfCategory()}
+									</Grid>
+								</Box>
 							</Stack>
 						</Box>
 					</Stack>
