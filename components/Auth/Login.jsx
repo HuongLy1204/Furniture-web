@@ -31,10 +31,12 @@ export default function Login() {
 		setPassword(data.get('password'))
 
 		if (user=== envUser && password===envPassword ){
-			authLogin.login(true)
+			authLogin.login(user)
 			router.push("/admin")
 		}
+
 	}
+	console.log(authLogin.user,"login");
 
 	return (
 		<ThemeProvider theme={theme}>

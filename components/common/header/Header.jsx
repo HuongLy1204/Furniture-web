@@ -9,7 +9,7 @@ export default function Header() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		console.log('llyyyy')
+
 		// productsApi.getAll().then((response) => setData(response))
 		const actionResult = dispatch(productsThunk())
 		const currentProduct = unwrapResult(actionResult)

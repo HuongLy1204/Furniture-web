@@ -1,25 +1,20 @@
-
-import { Box, Button, Chip, Stack, Typography } from '@mui/material'
-import { useSelector } from 'react-redux'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import { Box, Button, Chip, Stack } from '@mui/material'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import productsApi from '../../Api/productsApi'
 import Tables from '../../components/admins/Table'
 import AdminLayout from '../../components/layout/admin'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import { useState } from 'react'
-import { useForm } from "react-hook-form";
-import axiosClient from '../../Api/axiosClient'
-import productsApi from '../../Api/productsApi'
-import { useRouter } from 'next/router'
 
-export default function CategoryPage() {
-
+export default function CategoryPage(props) {
 	const [isOpen, setIsOpen] = useState(false)
-	const {register, handleSubmit}= useForm()
-	
+	const { register, handleSubmit } = useForm()
+
 	const handleOpen = () => {
 		setIsOpen(!isOpen)
 	}
-	const onSubmit = async data => {
-		const res= await productsApi.createCategory({title:data.title})
+	const onSubmit = async (data) => {
+		const res = await productsApi.createCategory({ title: data.title })
 		setIsOpen(!isOpen)
 	}
 	return (
@@ -30,11 +25,16 @@ export default function CategoryPage() {
 						<Chip label="Thêm danh mục" color="success" icon={<ArrowDropDownIcon />} />
 					</Button>
 					{isOpen ? (
-						<Box  height={80}>
-							<form style={{marginLeft:"180px",marginTop:"10px"}}  onSubmit={handleSubmit(onSubmit)}>
-
-							<input style={{width:"500px",marginTop:"5px" }}  {...register("title")} ></input><br/>
-							<Button style={{marginLeft:"480px",marginTop:"15px" }} type="submit">THÊM</Button>
+						<Box height={80}>
+							<form
+								style={{ marginLeft: '180px', marginTop: '10px' }}
+								onSubmit={handleSubmit(onSubmit)}
+							>
+								<input style={{ width: '500px', marginTop: '5px' }} {...register('title')}></input>
+								<br />
+								<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
+									THÊM
+								</Button>
 							</form>
 						</Box>
 					) : (
@@ -42,11 +42,9 @@ export default function CategoryPage() {
 					)}
 				</Box>
 
-				<Tables ></Tables>
+				<Tables></Tables>
 			</Stack>
-			
 		</Box>
-
 	)
 }
 CategoryPage.Layout = AdminLayout

@@ -8,8 +8,9 @@ import store from '../app/store'
 import { AuthProvider, useAuth } from '../components/Auth/Auth'
 import createEmotionCache from '../utils/create-emotion-cache'
 import theme from '../utils/theme'
-import "../styles/globals.css"
-
+import '../styles/globals.css'
+import NotAccess from '../components/Auth/NotAccess'
+import { useEffect, useState } from 'react'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -17,20 +18,20 @@ const clientSideEmotionCache = createEmotionCache()
 export default function MyApp(props) {
 	const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 	const Layout = Component.Layout
+	const auth = useAuth()
+	const [isLogin, setIsLogin] = useState(false)
 
 	
-	// const [user, setUser] = useState(true)
+		if (auth?.user === 'minhkha123') {
+			setIsLogin(true)
+		}
 
-	// useEffect(() => {
-	//   setUser(isSuccess)
-	// }, [])
-	// console.log(isSuccess, "is");
-	// console.log(user, "app");
+	console.log(auth, 'user')
+	console.log(isLogin, 'app')
 
-	// if (pageProps.protected && user===false) {
-	// 	return <NotAccess />
-	// }
-
+	if (pageProps.protected && isLogin == false) {
+		return <NotAccess />
+	}
 	return (
 		<CacheProvider value={emotionCache}>
 			<Head>
@@ -39,13 +40,13 @@ export default function MyApp(props) {
 			<ThemeProvider theme={theme}>
 				{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
 				<CssBaseline />
-				<Provider store={store}>
-					<AuthProvider>
+				<AuthProvider>
+					<Provider store={store}>
 						<Layout>
 							<Component {...pageProps} />
 						</Layout>
-					</AuthProvider>
-				</Provider>
+					</Provider>
+				</AuthProvider>
 			</ThemeProvider>
 		</CacheProvider>
 	)
