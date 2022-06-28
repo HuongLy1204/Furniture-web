@@ -1,22 +1,21 @@
 import {
 	Box,
-	Button,
-	Modal,
-	Table,
+	Button, Table,
 	TableBody,
 	TableContainer,
 	TableHead,
-	TableRow,
+	TableRow
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import Image from 'next/image'
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import EditForm from './EditForm'
+import productsApi from '../../Api/productsApi'
 
-export default function TableProducts() {
+export default function TableProducts(props) {
 	const categories = useSelector((state) => state.products.current)
+
+
 
 	const StyledTableCell = styled(TableCell)(({ theme }) => ({
 		[`&.${tableCellClasses.head}`]: {
@@ -36,21 +35,17 @@ export default function TableProducts() {
 			border: 0,
 		},
 	}))
-	const [open, setOpen] = useState(false)
-	const handleOpen = () => setOpen(true)
-	const handleClose = () => setOpen(false)
 
-	const style = {
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)',
-		width: 550,
-		bgcolor: 'white',
-		boxShadow: '10px 10px 5px #aaaaaa',
-	}
-
-	const renderListProducts = () => {
+	const renderListProducts = (props) => {
+		const handleEdit=(value)=>{
+			props.getProduct(value)
+			props.isOpen(true)
+		}
+		const handleDelete= async (id)=>{
+			const res= await productsApi.deleteProduct(id)
+			alert("Xoá thành công")
+			location.reload()
+		}
 		return categories.map((category) => {
 			return category?.products?.map((product) => {
 				return (
@@ -59,27 +54,27 @@ export default function TableProducts() {
 						<StyledTableCell>{product.title}</StyledTableCell>
 						<StyledTableCell>{product.description}</StyledTableCell>
 						<StyledTableCell>
-							<Box sx={{display:"flex", direction:"row", flexWrap:"wrap"}} >
-							{product.avatars?.map((ava) => {
-								return (
-									<Box ml={1}  key={ava.id}>
-									<Image width={50} height={50} fill="fixed" alt='hinhanh' src ={ava.image_url}></Image>
-										
-										<br />
-									</Box>
-								)
-							})}
+							<Box sx={{ display: 'flex', direction: 'row', flexWrap: 'wrap' }}>
+								{product.avatars?.map((ava) => {
+									return (
+										<Box ml={1} key={ava.id}>
+											<Image
+												width={50}
+												height={50}
+												fill="fixed"
+												alt="hinhanh"
+												src={ava.image_url}
+											></Image>
+											<br />
+										</Box>
+									)
+								})}
 							</Box>
 						</StyledTableCell>
 						<StyledTableCell>{category.title}</StyledTableCell>
 						<StyledTableCell>
-							<Button onClick={handleOpen}>Chỉnh sửa</Button>
-							<Modal open={open} onClose={handleClose}>
-								<Box sx={style}>
-									<EditForm boxShadow="none" data={category.label}></EditForm>
-								</Box>
-							</Modal>
-							<Button>XOÁ</Button>
+							<Button onClick={()=>handleEdit(product)}>Chỉnh sửa</Button>
+							<Button onClick={()=>handleDelete(product.id)}>XOÁ</Button>
 						</StyledTableCell>
 					</StyledTableRow>
 				)
@@ -101,7 +96,7 @@ export default function TableProducts() {
 							<StyledTableCell align="center">TÁC VỤ</StyledTableCell>
 						</TableRow>
 					</TableHead>
-					<TableBody>{renderListProducts()}</TableBody>
+					<TableBody>{renderListProducts(props)}</TableBody>
 				</Table>
 			</TableContainer>
 		</Box>

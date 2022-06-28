@@ -1,6 +1,7 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { Button, Chip, Input, Stack } from '@mui/material'
 import { Box } from '@mui/system'
+
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -14,28 +15,44 @@ export default function ProductsPage() {
 	const [imageSrc, setImageSrc] = useState('')
 	const [imageUrl, setUrl] = useState('')
 	const [listImage, setListImage] = useState([])
-	// const [a, setA]= useState()
-
 	const { register, handleSubmit } = useForm()
+	const [isEdit, setIsEdit] = useState(false)
+
+	const [dataProduct, setDataProduct] = useState({})
+
 	const categories = useSelector((state) => state.products.current)
 
 	const handleOpen = () => {
 		setIsOpen(!isOpen)
 	}
+	const getIdProductFromChild = (value) => {
+		setDataProduct(value)
+		setIsEdit(!isEdit)
+	}
+	console.log(dataProduct, 'product')
+
 	const onSubmit = async (data) => {
 		const newProduct = {
 			title: data.title,
 			description: data.description,
 			category_id: data.category,
-			image_urls: listImage
+			image_urls: listImage,
 		}
+		if (isEdit) {
+			const res = await productsApi.updateProduct(newProduct, dataProduct?.id)
 
-		const res = await productsApi.createProduct(newProduct)
-		setIsOpen(!isOpen)
+			alert('Sửa thành công')
+			location.reload()
+		} else {
+			const res = await productsApi.createProduct(newProduct)
+			setIsOpen(!isOpen)
+			alert('Thêm thành công')
+			location.reload()
+		}
 	}
+
 	const handleOnChange = (event) => {
 		const reader = new FileReader()
-
 		reader.onload = (onLoadEvent) => {
 			setImageSrc(onLoadEvent.target.result)
 		}
@@ -44,9 +61,7 @@ export default function ProductsPage() {
 	async function handleOnSubmit(event) {
 		event.preventDefault()
 		const form = event.currentTarget
-
 		const fileInput = Array.from(form.elements).find(({ name }) => name === 'file')
-
 		const formData = new FormData()
 		for (const file of fileInput.files) {
 			formData.append('file', file)
@@ -56,15 +71,15 @@ export default function ProductsPage() {
 			method: 'POST',
 			body: formData,
 		}).then((r) => r.json())
-
 		setUrl(data.secure_url)
+		alert('Up ảnh thành công')
 	}
 
 	useEffect(() => {
 		if (imageUrl == '') return
 		setListImage([...listImage, imageUrl])
 	}, [imageUrl])
-	console.log(listImage, 'list')
+
 	return (
 		<Box>
 			<Stack direction="column">
@@ -78,34 +93,72 @@ export default function ProductsPage() {
 								onSubmit={handleSubmit(onSubmit)}
 								style={{ marginLeft: '180px', marginTop: '10px' }}
 							>
-								<Input
-									type="text"
-									placeholder="Tên sản phẩm"
-									style={{ width: '500px', marginTop: '5px' }}
-									{...register('title')}
-								></Input>
-								<br />
-								<Input
-									type="text"
-									placeholder="mô tả"
-									style={{ width: '500px', marginTop: '5px' }}
-									{...register('description')}
-								></Input>
-								<br />
-								<select {...register('category')}>
-									{categories.map((category) => {
-										return (
-											<option key={category.id} value={category.id}>
-												{category.title}
-											</option>
-										)
-									})}
-								</select>
+								{isEdit ? (
+									<>
+										<Input
+											defaultValue={dataProduct.title}
+											type="text"
+											placeholder="Tên sản phẩm"
+											style={{ width: '500px', marginTop: '5px' }}
+											{...register('title')}
+										></Input>
+										<br />
+										<Input
+											defaultValue={dataProduct.description}
+											type="text"
+											placeholder="mô tả"
+											style={{ width: '500px', marginTop: '5px' }}
+											{...register('description')}
+										></Input>
+										<br />
+										<select {...register('category')}>
+											{categories.map((category) => {
+												return (
+													<option key={category.id} value={category.id}>
+														{category.title}
+													</option>
+												)
+											})}
+										</select>
+									</>
+								) : (
+									<>
+										<Input
+											type="text"
+											placeholder="Tên sản phẩm"
+											style={{ width: '500px', marginTop: '5px' }}
+											{...register('title')}
+										></Input>
+										<br />
+										<Input
+											type="text"
+											placeholder="mô tả"
+											style={{ width: '500px', marginTop: '5px' }}
+											{...register('description')}
+										></Input>
+										<br />
+										<select {...register('category')}>
+											{categories.map((category) => {
+												return (
+													<option key={category.id} value={category.id}>
+														{category.title}
+													</option>
+												)
+											})}
+										</select>
+									</>
+								)}
 
 								<br />
-								<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
-									THÊM
-								</Button>
+								{isEdit ? (
+									<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
+										cập nhật
+									</Button>
+								) : (
+									<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
+										THÊM
+									</Button>
+								)}
 							</form>
 							<form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
 								<input name="file" type="file"></input>
@@ -119,8 +172,10 @@ export default function ProductsPage() {
 						''
 					)}
 				</Box>
-
-				<TableProducts></TableProducts>
+				<TableProducts
+					isOpen={handleOpen}
+					getProduct={(value) => getIdProductFromChild(value)}
+				></TableProducts>
 			</Stack>
 		</Box>
 	)

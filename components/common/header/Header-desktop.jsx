@@ -11,23 +11,25 @@ import { useAuth } from '../../Auth/Auth'
 import { ROUTE_LIST } from './route'
 
 function HeaderDesktop() {
-	const [isLogin, setIsLogin] = useState(false)
-	const router = useRouter()
-	const auth = useAuth()
+	 const router = useRouter()
+	const [isAdmin, setIsAdmin] = useState(false)
 
-	console.log(auth.user,"login ");
-  useEffect(()=>{
-    if (auth.user === 'minhkha123') {
-      setIsLogin(true)}
+	useEffect(() => {
 
-  },[])
-  const handleLogout=()=>{
-    auth.logout()
-    router.replace("/login")
-    console.log(auth.user,"out");
-  }
+		const admin = localStorage.getItem('Admin')
+		if (admin === 'minhkha123') {
+		setIsAdmin(true)
+	// 	} else {
+	// 		router.replace('/login')
+		}
+ }, [])
+	// console.log(isAdmin)
+	 const handleLogout = () => {
+		localStorage.removeItem('Admin')
+	router.replace('/login')
+	 }
 
-	return (
+	 return (
 		<Box
 			zIndex={100}
 			bgcolor={'white'}
@@ -68,8 +70,22 @@ function HeaderDesktop() {
 					</Box>
 					<Box pt={1} width="20%">
 						<Stack justifyContent={'center'} direction="row" spacing={2}>
-							{isLogin ? (
-								<Button onClick={handleLogout}>logout</Button>
+							{isAdmin ? (
+								<>
+									<Link href="/admin" passHref>
+										<MuiLink
+											sx={{
+												color: 'red',
+												fontSize: '16px',
+											}}
+											variant="button"
+										>
+											{' '}
+											Admin
+										</MuiLink>
+									</Link>
+											<Button onClick={handleLogout}>logout</Button>
+								</>
 							) : (
 								<Chip color="success" size="medium" icon={<LocalPhoneIcon />} label="0333311574" />
 							)}

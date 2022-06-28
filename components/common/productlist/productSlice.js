@@ -1,4 +1,3 @@
-import { accordionActionsClasses } from '@mui/material'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import productsApi from '../../../Api/productsApi'
 

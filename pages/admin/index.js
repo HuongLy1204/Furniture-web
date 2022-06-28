@@ -1,5 +1,6 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import { Box, Button, Chip, Stack } from '@mui/material'
+import { Alert, Box, Button, Chip, Stack } from '@mui/material'
+
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import productsApi from '../../Api/productsApi'
@@ -9,13 +10,31 @@ import AdminLayout from '../../components/layout/admin'
 export default function CategoryPage(props) {
 	const [isOpen, setIsOpen] = useState(false)
 	const { register, handleSubmit } = useForm()
-
+	const [idCategoryEdit, setIdCategoryEdit] = useState()
+	const [isEdit, setIsEdit] = useState(false)
+	const [titleCategory, setTitleCategory] = useState('')
 	const handleOpen = () => {
 		setIsOpen(!isOpen)
 	}
+
+	const getCategoryIdFromChild = (value) => {
+		setIdCategoryEdit(value.id)
+		setIsEdit(!isEdit)
+		setTitleCategory(value.title)
+	}
+
 	const onSubmit = async (data) => {
-		const res = await productsApi.createCategory({ title: data.title })
-		setIsOpen(!isOpen)
+		if (isEdit) {
+			const res = await productsApi.updateCategory({ title: data.title }, idCategoryEdit)
+			setIsOpen(!isOpen)
+			alert('Sửa thành công')
+			location.reload()
+		} else {
+			const res = await productsApi.createCategory({ title: data.title })
+			setIsOpen(!isOpen)
+			alert('Thêm thành công')
+			location.reload()
+		}
 	}
 	return (
 		<Box pt={2}>
@@ -30,11 +49,29 @@ export default function CategoryPage(props) {
 								style={{ marginLeft: '180px', marginTop: '10px' }}
 								onSubmit={handleSubmit(onSubmit)}
 							>
-								<input style={{ width: '500px', marginTop: '5px' }} {...register('title')}></input>
+								{isEdit ? (
+									<input
+										placeholder={titleCategory}
+										style={{ width: '500px', marginTop: '5px' }}
+										{...register('title')}
+									></input>
+								) : (
+									<input
+										placeholder="Tên danh mục"
+										style={{ width: '500px', marginTop: '5px' }}
+										{...register('title')}
+									></input>
+								)}
 								<br />
-								<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
-									THÊM
-								</Button>
+								{isEdit ? (
+									<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
+										cập nhật
+									</Button>
+								) : (
+									<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
+										THÊM
+									</Button>
+								)}
 							</form>
 						</Box>
 					) : (
@@ -42,7 +79,7 @@ export default function CategoryPage(props) {
 					)}
 				</Box>
 
-				<Tables></Tables>
+				<Tables getCategory={(value) => getCategoryIdFromChild(value)} isOpen={handleOpen}></Tables>
 			</Stack>
 		</Box>
 	)

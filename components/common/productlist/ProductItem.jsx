@@ -105,7 +105,7 @@ export default function ProductItem(props) {
 							maxWidth: 280,
 						}}
 						component="img"
-						image={props.dataItem.avatars[0].image_url}
+						image={props.dataItem?.avatars[0]?.image_url}
 						alt={props.dataItem.title}
 					/>
 					<CardContent sx={{ padding: '5px' }}>

@@ -22,7 +22,7 @@ export default function Login() {
 	const [user,setUser]= useState("")
 	const [password,setPassword]= useState("")
 
-	const authLogin = useAuth()
+
 	const router = useRouter()
 	const handleSubmit = (event) => {
 		event.preventDefault()
@@ -31,12 +31,13 @@ export default function Login() {
 		setPassword(data.get('password'))
 
 		if (user=== envUser && password===envPassword ){
-			authLogin.login(user)
+		const local= 	localStorage.setItem("Admin",user)
 			router.push("/admin")
+			console.log(local);
 		}
 
 	}
-	console.log(authLogin.user,"login");
+
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -84,6 +85,7 @@ export default function Login() {
 						<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 							Sign In
 						</Button>
+						
 					</Box>
 				</Box>
 			</Container>

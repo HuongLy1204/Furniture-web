@@ -18,20 +18,7 @@ const clientSideEmotionCache = createEmotionCache()
 export default function MyApp(props) {
 	const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 	const Layout = Component.Layout
-	const auth = useAuth()
-	const [isLogin, setIsLogin] = useState(false)
-
 	
-		if (auth?.user === 'minhkha123') {
-			setIsLogin(true)
-		}
-
-	console.log(auth, 'user')
-	console.log(isLogin, 'app')
-
-	if (pageProps.protected && isLogin == false) {
-		return <NotAccess />
-	}
 	return (
 		<CacheProvider value={emotionCache}>
 			<Head>

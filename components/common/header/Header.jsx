@@ -13,6 +13,7 @@ export default function Header() {
 		// productsApi.getAll().then((response) => setData(response))
 		const actionResult = dispatch(productsThunk())
 		const currentProduct = unwrapResult(actionResult)
+		console.log(currentProduct,"product");
 	}, [])
 	return (
 		<>

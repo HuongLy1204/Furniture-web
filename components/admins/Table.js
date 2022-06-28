@@ -1,25 +1,12 @@
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import {
-	Box,
-	Button,
-	Chip,
-	Modal,
-	Table,
-	TableBody,
-	TableContainer,
-	TableHead,
-	TableRow,
-} from '@mui/material'
+import { Box, Button, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import EditForm from './EditForm'
+import productsApi from '../../Api/productsApi'
 
-export default function TableCustomize() {
-	const [open, setOpen] = useState(false)
+export default function TableCustomize(props) {
 	const dataCategory = useSelector((state) => state.products.current)
-
 
 	const StyledTableCell = styled(TableCell)(({ theme }) => ({
 		[`&.${tableCellClasses.head}`]: {
@@ -39,32 +26,24 @@ export default function TableCustomize() {
 			border: 0,
 		},
 	}))
-
-	const style = {
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)',
-		width: 550,
-		bgcolor: 'white',
-		boxShadow: '10px 10px 5px #aaaaaa',
+	const handleClick = (value) => {
+		props.isOpen(true)
+		props.getCategory(value)
+	}
+	const handleDelete = async (id) => {
+		const res= await productsApi.deleteCategory(id)
+		alert('Xoá thành công')
+			location.reload()
 	}
 
-
-	const handleOpen = () => setOpen(true)
-	const handleClose = () => setOpen(false)
-	
 	return (
 		<Box>
-			
-
 			<TableContainer>
 				<Table>
 					<TableHead>
 						<TableRow>
 							<StyledTableCell>ID</StyledTableCell>
 							<StyledTableCell> TIÊU ĐỀ</StyledTableCell>
-
 							<StyledTableCell align="center">TÁC VỤ</StyledTableCell>
 						</TableRow>
 					</TableHead>
@@ -76,20 +55,8 @@ export default function TableCustomize() {
 									{item.title}
 								</StyledTableCell>
 								<StyledTableCell align="center">
-									<Button onClick={handleOpen}>Chỉnh sửa</Button>
-									<Modal
-										//  hideBackdrop="true"
-
-										open={open}
-										// onClose={handleClose}
-										// aria-labelledby="modal-modal-title"
-										// aria-describedby="modal-modal-description"
-									>
-										<Box sx={style}>
-											<EditForm boxShadow="none" data={item.id}></EditForm>
-										</Box>
-									</Modal>
-									<Button>XOÁ</Button>
+									<Button onClick={() => handleClick(item)}>Chỉnh sửa</Button>
+									<Button onClick={() => handleDelete(item.id)}>XOÁ</Button>
 								</StyledTableCell>
 							</StyledTableRow>
 						))}
