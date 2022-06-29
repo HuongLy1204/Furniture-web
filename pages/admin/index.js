@@ -1,6 +1,5 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import { Alert, Box, Button, Chip, Stack } from '@mui/material'
-
+import { Box, Button, Chip, Stack } from '@mui/material'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import productsApi from '../../Api/productsApi'

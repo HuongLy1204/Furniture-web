@@ -16,7 +16,7 @@ export default function NavBar() {
 				<Button size='large' sx={{color:"darkgreen"}} onClick={() => router.replace('/admin/products')}>SẢN PHẨM</Button>
 			</Box>
 			<Box >
-				<Button size='large' sx={{color:"darkgreen"}} onClick={() => router.replace('/admin/works')}>DỰ ÁN</Button>
+				<Button size='large' sx={{color:"darkgreen"}} onClick={() => router.replace('/admin/projects')}>DỰ ÁN</Button>
 			</Box>
             </Stack>
 		</Box>

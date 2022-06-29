@@ -7,15 +7,15 @@ getAll(){
     return axiosClient.get(url)
 },
 createProject(body){
-    const url="/create-product"
+    const url="/create-project"
     return axiosClient.post(url,body)
 },
 updateProject(body,id){
-    const url =`/product/${id}`
+    const url =`/project/${id}`
     return axiosClient.put(url,body)
 },
 deleteProject(id){
-    const url=`/product/${id}`
+    const url=`/project/${id}`
     return axiosClient.delete(url)
 }
 }
