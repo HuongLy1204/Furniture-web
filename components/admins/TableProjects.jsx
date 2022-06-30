@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import Image from 'next/image'
 import { useSelector } from 'react-redux'
+import projectsApi from '../../Api/projectsApi'
 
 export default function TableProjects(props) {
 	const projects = useSelector((state) => state?.projects?.projects)
@@ -26,38 +27,50 @@ export default function TableProjects(props) {
 			border: 0,
 		},
 	}))
+	const handleEdit = (value) => {
+		props.isOpen(true)
+		props.getProject(value)
+	}
+	const handleDelete = async (id) => {
+		const res = await projectsApi.deleteProject(id)
+		alert('Xoá thành công')
+		location.reload()
+	}
 
 	const renderListProjects = (props) => {
 		return projects.map((project) => {
 			return (
-				<StyledTableRow key={project.id}>
-					<StyledTableCell>{project.id}</StyledTableCell>
-					<StyledTableCell>{project.title}</StyledTableCell>
-					<StyledTableCell>{project.description}</StyledTableCell>
-					<StyledTableCell>
+				<>
+					<StyledTableRow key={project.id}>
+						<StyledTableCell>{project.id}</StyledTableCell>
+						<StyledTableCell>{project.title}</StyledTableCell>
+						<StyledTableCell>{project.description}</StyledTableCell>
+						<StyledTableCell>
+							
 						<Box sx={{ display: 'flex', direction: 'row', flexWrap: 'wrap' }}>
-							{projects.avatars?.map((ava) => {
-								return (
-									<Box ml={1} key={ava.id}>
-										<Image
-											width={50}
-											height={50}
-											fill="fixed"
-											alt="hinhanh"
-											src={ava.image_url}
-										></Image>
-										<br />
-									</Box>
-								)
-							})}
-						</Box>
-					</StyledTableCell>
+								{project.avatars?.map((ava) => {
+									return (
+										<Box ml={1} key={ava.id}>
+											<Image
+												width={50}
+												height={50}x
+												fill="fixed"
+												alt="hinhanh"
+												src={ava.image_url}
+											></Image>
+											<br />
+										</Box>
+									)
+								})}
+							</Box>
+						</StyledTableCell>
 
-					<StyledTableCell>
-						<Button>Chỉnh sửa</Button>
-						<Button>XOÁ</Button>
-					</StyledTableCell>
-				</StyledTableRow>
+						<StyledTableCell>
+							<Button onClick={() => handleEdit(project)}>Chỉnh sửa</Button>
+							<Button onClick={() => handleDelete(project.id)}>XOÁ</Button>
+						</StyledTableCell>
+					</StyledTableRow>
+				</>
 			)
 		})
 	}
@@ -78,7 +91,6 @@ export default function TableProjects(props) {
 					</TableHead>
 					<TableBody>{renderListProjects()}</TableBody>
 				</Table>
-
 			</TableContainer>
 		</Box>
 	)

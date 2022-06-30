@@ -16,9 +16,14 @@ export default function ProjectsPageAdmin() {
 	const [listImage, setListImage] = useState([])
 	const { register, handleSubmit } = useForm()
 	const [isEdit, setIsEdit] = useState(false)
+	const [dataProject, setDataProject] = useState({})
 
 	const handleOpen = () => {
 		setIsOpen(!isOpen)
+	}
+	const getIdProjectFromChild = (value) => {
+		setDataProject(value)
+		setIsEdit(true)
 	}
 	const onSubmit = async (data) => {
 		const newProject = {
@@ -26,14 +31,19 @@ export default function ProjectsPageAdmin() {
 			description: data.description,
 			image_urls: listImage,
 		}
-		console.log(newProject,"new");
-		const res = await projectsApi.createProject(newProject)
-			console.log(res , "res");
+		if (isEdit) {
+			const res = await projectsApi.updateProject(newProject, dataProject?.id)
 
+			alert('Sửa thành công')
+			location.reload()
+		} else {
+			const res = await projectsApi.createProject(newProject)
 			setIsOpen(!isOpen)
-
 			alert('Thêm thành công')
 			location.reload()
+		}
+
+		setIsOpen(!isOpen)
 	}
 	const handleOnChange = (event) => {
 		const reader = new FileReader()
@@ -76,54 +86,54 @@ export default function ProjectsPageAdmin() {
 								onSubmit={handleSubmit(onSubmit)}
 								style={{ marginLeft: '180px', marginTop: '10px' }}
 							>
-								{/* {isEdit ? (
-						<>
-							<Input
-								defaultValue={dataProduct.title}
-								type="text"
-								placeholder="Tên sản phẩm"
-								style={{ width: '500px', marginTop: '5px' }}
-								{...register('title')}
-							></Input>
-							<br />
-							<Input
-								defaultValue={dataProduct.description}
-								type="text"
-								placeholder="mô tả"
-								style={{ width: '500px', marginTop: '5px' }}
-								{...register('description')}
-							></Input><br />
-							
-						</>
-					) : ( */}
-								<>
-									<Input
-										type="text"
-										placeholder="Tên công trình"
-										style={{ width: '500px', marginTop: '5px' }}
-										{...register('title')}
-									></Input>
-									<br />
-									<Input
-										type="text"
-										placeholder="mô tả"
-										style={{ width: '500px', marginTop: '5px' }}
-										{...register('description')}
-									></Input>
-									<br />
-								</>
-								{/* )} */}
-
+								{' '}
+								{isEdit ? (
+									<>
+										<Input
+											defaultValue={dataProject.title}
+											type="text"
+											placeholder="Tên sản phẩm"
+											style={{ width: '500px', marginTop: '5px' }}
+											{...register('title')}
+										></Input>
+										<br />
+										<Input
+											defaultValue={dataProject.description}
+											type="text"
+											placeholder="mô tả"
+											style={{ width: '500px', marginTop: '5px' }}
+											{...register('description')}
+										></Input>
+										<br />
+									</>
+								) : (
+									<>
+										<Input
+											type="text"
+											placeholder="Tên công trình"
+											style={{ width: '500px', marginTop: '5px' }}
+											{...register('title')}
+										></Input>
+										<br />
+										<Input
+											type="text"
+											placeholder="mô tả"
+											style={{ width: '500px', marginTop: '5px' }}
+											{...register('description')}
+										></Input>
+										<br />
+									</>
+								)}
 								<br />
-								{/* {isEdit ? (
+								{isEdit ? (
 									<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
 										cập nhật
 									</Button>
-								) : ( */}
-								<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
-									THÊM
-								</Button>
-								{/* )} */}
+								) : (
+									<Button style={{ marginLeft: '480px', marginTop: '15px' }} type="submit">
+										THÊM
+									</Button>
+								)}
 							</form>
 							<form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
 								<input name="file" type="file"></input>
@@ -137,7 +147,12 @@ export default function ProjectsPageAdmin() {
 						''
 					)}
 				</Box>
-				<TableProjects></TableProjects>
+				<TableProjects
+					getProject={(value) => {
+						getIdProjectFromChild(value)
+					}}
+					isOpen={handleOpen}
+				></TableProjects>
 			</Stack>
 		</Box>
 	)
